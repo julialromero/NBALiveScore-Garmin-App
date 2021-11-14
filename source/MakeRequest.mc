@@ -1,14 +1,11 @@
-// It is common for developers to wrap a makeWebRequest() call in a function
-// as displayed below. The function defines the variables for each of the
+// The function defines the variables for each of the
 // necessary arguments in a Communications.makeWebRequest() call, then passes
-// these variables as the arguments. This allows for a clean layout of your web
-// request and expandability.
+// these variables as the arguments. 
 import Toybox.System;
 import Toybox.Communications;
 import Toybox.Lang;
 
 class MakeRequest {
-    var stats = null;
 	public var response;
 	var _view;
 

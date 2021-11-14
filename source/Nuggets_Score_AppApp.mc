@@ -2,11 +2,13 @@ import Toybox.Application;
 import Toybox.Lang;
 import Toybox.WatchUi;
 
+var stats = null;
+
 class Nuggets_Score_AppApp extends Application.AppBase {
-    var InputDelegate;
     function initialize() {
         AppBase.initialize();
-        InputDelegate = new MyInputDelegate();
+        //InputDelegate = new MyInputDelegate();
+        new ToggleGamesDelegate();
     }
 
     // onStart() is called on application start up
@@ -32,10 +34,9 @@ class Nuggets_Score_AppApp extends Application.AppBase {
 		    } 
 		    
 		// TODO: return default loading view instead
-		return [new Nuggets_Score_AppView() ];
+		return [new Nuggets_Score_AppView(), new ToggleGamesDelegate()];
     }
 }	
-
 
 
 function getApp() as Nuggets_Score_AppApp {
@@ -43,45 +44,41 @@ function getApp() as Nuggets_Score_AppApp {
 }
 
 
-// class ClickDelegate extends WatchUi.BehaviorDelegate {
-//     function initialize() {
-//         BehaviorDelegate.initialize();
-//     }
-//     function onKey(evt) {
-//         System.println("Key is pressed");
-//     	return [ new Nuggets_Score_AppView() ] as Array<Views or InputDelegates>;
-//     }
-// }
-
-// class InputDelegate extends WatchUi.BehaviorDelegate {
-//     function onTap(clickEvent) {
-//         System.println(clickEvent.getCoordinates()); // e.g. [36, 40]
-//         System.println(clickEvent.getType());        // CLICK_TYPE_TAP = 0
-//         return true;
-//     }
-// }
-
-class MyInputDelegate extends WatchUi.InputDelegate {
+class ToggleGamesDelegate extends WatchUi.InputDelegate {
     function initialize() {
-        System.println("init input delegate");
-        WatchUi.InputDelegate.initialize();
-    }
-    
-    function onKey(keyEvent) {
-        System.println("key");
-        System.println(keyEvent.getKey());         // e.g. KEY_MENU = 7
-        return true;
+        InputDelegate.initialize();
     }
 
-    function onTap(clickEvent) {
-        System.println("tap");
-        System.println(clickEvent.getType());      // e.g. CLICK_TYPE_TAP = 0
-        return true;
-    }
+    // function onKey(evt) {
+    //     System.println("Key is pressed");
+    // 	return true;
+    // }
+
+    // function onTap(clickEvent) {
+    //     System.println("tap detected");
+    //     System.println(clickEvent.getCoordinates()); // e.g. [36, 40]
+    //     System.println(clickEvent.getType());        // CLICK_TYPE_TAP = 0
+    //     return true;
+    // }
 
     function onSwipe(swipeEvent) {
-        System.println("swip");
+        if(stats == null){
+            return true;
+        }
+
+        var direction = swipeEvent.getDirection();
         System.println(swipeEvent.getDirection()); // e.g. SWIPE_DOWN = 2
+
+        // if right swipe
+        if(direction == 1){
+            stats.increment_game();
+        }
+
+        // if left swipe
+        if(direction == 3){
+            stats.decrement_game();
+        }
+
         return true;
     }
 }

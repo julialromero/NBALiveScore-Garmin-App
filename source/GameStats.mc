@@ -52,6 +52,10 @@ class GameStats {
     }
 
 	function set_game_stats(){
+		if (num_games == 0){
+			return;
+		}
+
 		// Populate game stats
 	    self.quarter = 	game_data[game_iterator]["currentPeriod"];
 	    self.status = 	game_data[game_iterator]["statusGame"];
