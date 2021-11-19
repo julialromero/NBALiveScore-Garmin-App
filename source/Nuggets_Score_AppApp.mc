@@ -21,8 +21,6 @@ class Nuggets_Score_AppApp extends Application.AppBase {
 
     // onStop() is called when your application is exiting
     function onStop(state as Dictionary?) as Void {
-        System.println("onStop");
-    	// quit query
     }
 
     // Return the initial view of your application here

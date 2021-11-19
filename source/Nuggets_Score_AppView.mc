@@ -12,15 +12,13 @@ class Nuggets_Score_AppView extends WatchUi.View {
 
     // Load your resources here
     function onLayout(dc as Dc) as Void {
-        System.println("onLayout");
         setLayout(Rez.Layouts.LoadStats(dc));
     }
 
     // Called when this View is brought to the foreground. Restore
     // the state of this View and prepare it to be shown. This includes
     // loading resources into memory.
-    function onShow() as Void {
-    	System.println("entered onShow!!!");     
+    function onShow() as Void { 
     	var endpoint = "games/live/";
     	requester.makeRequest(self, endpoint);
     	

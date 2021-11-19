@@ -56,6 +56,7 @@ class GameStats {
 			return;
 		}
 
+		// TODO: TRY EXCEPT out of bounds error
 		// Populate game stats
 	    self.quarter = 	game_data[game_iterator]["currentPeriod"];
 	    self.status = 	game_data[game_iterator]["statusGame"];
@@ -66,12 +67,21 @@ class GameStats {
 	    self.home = 	game_data[game_iterator]["hTeam"]["nickName"];
 	    self.h_points = game_data[game_iterator]["hTeam"]["score"]["points"];
 
+		if(self.visitor.length() > 7){
+			self.visitor = 	game_data[game_iterator]["vTeam"]["shortName"];
+		}
+
+		if(self.home.length() > 7){
+			self.home = 	game_data[game_iterator]["hTeam"]["shortName"];
+		}
+
 		update_view();
 	}
 
 	// increment game index and update view
 	function increment_game(){
-		if(game_iterator == num_games-1){
+		if(game_iterator >= num_games-1){
+			game_iterator = num_games-1;
 			return;
 		}
 
