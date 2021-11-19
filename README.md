@@ -1,6 +1,6 @@
 # NBALiveScore-Garmin-App
 
-This is a Garmin Connect IQ widget. This widget queries the API at https://rapidapi.com/api-sports/api/api-nba/ for live NBA games. Users can swipe left and right to cycle through muyltiple games. By default if the Nuggets are playing, their game stats are shown first. 
+This is a Garmin Connect IQ widget. This widget queries the API at https://rapidapi.com/api-sports/api/api-nba/ for live NBA games. Users can swipe right to cycle through multiple live NBA game stats. By default, if the Nuggets are playing, their game stats are shown first. 
 Create your API Token through the API web interface and fill in the ServerToken at source/Keys.mc.
 
 
