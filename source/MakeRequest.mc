@@ -9,6 +9,7 @@ class MakeRequest {
 	public var response;
 	var _view;
 
+
     // set up the response callback function
     function onReceive(responseCode as Number, data as Dictionary?) as Void {
         if (responseCode == 200) {
@@ -27,6 +28,7 @@ class MakeRequest {
             
         }
     }
+
 
     function makeRequest(view, endpoint as String) as Void {
     	_view = view;
@@ -47,9 +49,8 @@ class MakeRequest {
         };
 
         var responseCallback = method(:onReceive);                  // set responseCallback to
-        // onReceive() method
+        
         // Make the Communications.makeWebRequest() call
-
         Communications.makeWebRequest(url, params, options, method(:onReceive));
     }
 }

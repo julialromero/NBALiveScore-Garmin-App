@@ -18,6 +18,7 @@ class GameStats {
 		num_games = r["api"]["results"];
 	}
 
+
 	function initialize(r as Dictionary, view) {
 		_view = view;
 		update_game_data(r);
@@ -51,12 +52,12 @@ class GameStats {
 
     }
 
+
 	function set_game_stats(){
 		if (num_games == 0){
 			return;
 		}
 
-		// TODO: TRY EXCEPT out of bounds error
 		// Populate game stats
 	    self.quarter = 	game_data[game_iterator]["currentPeriod"];
 	    self.status = 	game_data[game_iterator]["statusGame"];
@@ -78,10 +79,11 @@ class GameStats {
 		update_view();
 	}
 
+
 	// increment game index and update view
 	function increment_game(){
 		if(game_iterator >= num_games-1){
-			game_iterator = num_games-1;
+			game_iterator = 0;
 			return;
 		}
 
@@ -89,15 +91,6 @@ class GameStats {
 		set_game_stats();
 	}
 
-	// decrement game index and update view
-	function decrement_game(){
-		if(game_iterator == 0){
-			return;
-		}
-
-		game_iterator--;
-		set_game_stats();
-	}
 
 	function update_view(){
 		_view.updateStats(self);

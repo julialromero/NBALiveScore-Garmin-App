@@ -6,18 +6,19 @@ using Toybox.Timer;
 class Nuggets_Score_AppView extends WatchUi.View {
     var myTimer = new Timer.Timer();
     var requester = new MakeRequest();
+
+    
     function initialize() {
         View.initialize();
     }
 
-    // Load your resources here
+
+    // Load  resources here
     function onLayout(dc as Dc) as Void {
         setLayout(Rez.Layouts.LoadStats(dc));
     }
 
-    // Called when this View is brought to the foreground. Restore
-    // the state of this View and prepare it to be shown. This includes
-    // loading resources into memory.
+    // Called when this View is brought to the foreground.
     function onShow() as Void { 
     	var endpoint = "games/live/";
     	requester.makeRequest(self, endpoint);
@@ -30,20 +31,20 @@ class Nuggets_Score_AppView extends WatchUi.View {
 
     }
 
+
     // Update the view
     function onUpdate(dc as Dc) as Void {
         // Call the parent onUpdate function to redraw the layout
         View.onUpdate(dc);
     }
 
-    // Called when this View is removed from the screen. Save the
-    // state of this View here. This includes freeing resources from
-    // memory.
+
+    // Called when this View is removed from the screen.
     function onHide() as Void {
     }
     
     
-    // Function called when the information is returned by the transaction
+    // Function called when the game view is incremented or initial request is returned
     function updateStats(stats) {
     
         var view = View.findDrawableById("team1");
